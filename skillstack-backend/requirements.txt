@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+alembic  # optional for migrations
+python-multipart  # if you later add uploads
+pydantic
+typing_extensions
