@@ -90,12 +90,12 @@ http://127.0.0.1:8001
 ### Screenshots
 
 ### Home
-![Home](./skillstack-frontend/public/home.png)
+(![Home](skillstack-frontend/public/home.png))
 ### Dashboard
-![Dashboard](./skillstack-frontend/public/dashboard.png)
+![Dashboard](skillstack-frontend/public/dashboard.png)
 
 ### Add Skill Page
-![Add Skill](./skillstack-frontend/public/addskill.png)
+![Add Skill](skillstack-frontend/public/addskill.png)
 
 ### Future Improvements
 ---
