@@ -6,7 +6,13 @@ export default function SkillList({ skills, onUpdate, onDelete }) {
   return (
     <div>
       {skills.map(skill => (
-        <SkillCard key={skill.id} skill={skill} onUpdate={onUpdate} onDelete={onDelete} />
+        <SkillCard 
+  key={skill.id + "-" + (skill.notes || "")} 
+  skill={skill} 
+  onUpdate={onUpdate} 
+  onDelete={onDelete} 
+/>
+
       ))}
     </div>
   );
