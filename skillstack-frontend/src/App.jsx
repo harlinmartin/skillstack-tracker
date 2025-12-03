@@ -1,17 +1,24 @@
 // src/App.jsx
 import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+
 import { listSkills, createSkill, updateSkill, deleteSkill } from "./api";
-import AddSkillForm from "./components/AddSkillForm";
-import SkillList from "./components/SkillList";
-import Dashboard from "./components/Dashboard";
+
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import DashboardPage from "./pages/DashboardPage";
+import AddSkillPage from "./pages/AddSkillPage";
+
 import "./styles/global.css";
 import "./styles/layout.css";
 import "./styles/navbar.css";
 import "./styles/forms.css";
 import "./styles/cards.css";
 import "./styles/dashboard.css";
-
 
 export default function App() {
   const [skills, setSkills] = useState([]);
@@ -49,21 +56,34 @@ export default function App() {
   }
 
   return (
-    <>
+    <Router>
       <Navbar />
-      <div className="container">
-        <h1>SkillStack</h1>
-        <div className="layout-two">
-          <main className="main-col">
-            <AddSkillForm onCreate={handleCreate} />
-            {loading ? <p>Loading...</p> : <SkillList skills={skills} onUpdate={handleUpdate} onDelete={handleDelete} />}
-          </main>
 
-          <aside className="aside-col">
-            <Dashboard skills={skills} />
-          </aside>
-        </div>
+      <div className="container">
+        <Routes>
+
+          <Route path="/" element={<Home />} />
+
+          <Route
+            path="/dashboard"
+            element={<DashboardPage skills={skills} />}
+          />
+
+          <Route
+            path="/add-skill"
+            element={
+              <AddSkillPage
+                skills={skills}
+                loading={loading}
+                onCreate={handleCreate}
+                onUpdate={handleUpdate}
+                onDelete={handleDelete}
+              />
+            }
+          />
+
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
