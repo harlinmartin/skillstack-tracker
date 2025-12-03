@@ -1,9 +1,12 @@
-// src/components/SkillCard.jsx
-import React, { useState } from "react";
+
+import React, { useState} from "react";
+
 
 export default function SkillCard({ skill, onUpdate, onDelete }) {
   const [hours, setHours] = useState("");
-  const [notes, setNotes] = useState(skill.notes || "");
+const [notes, setNotes] = useState(skill.notes || "");
+
+
 
   function patch(body) {
     onUpdate(skill.id, body);
