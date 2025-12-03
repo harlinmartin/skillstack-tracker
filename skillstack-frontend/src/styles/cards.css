@@ -56,3 +56,16 @@
   border-radius: 8px;
   border: 1px solid var(--border);
 }
+
+.btn-complete {
+  background: #e6f0ff;
+  border: 1px solid #6ea8fe;
+  color: #1a4db3;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-complete:hover {
+  background: #d6e8ff;
+}

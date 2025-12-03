@@ -1,4 +1,7 @@
-/* NAVBAR FULL WIDTH */
+.navbar {
+  width: 100%;
+}
+
 .navbar {
   width: 100%;
   background: #ffffff;
@@ -9,7 +12,7 @@
   z-index: 100;
 }
 
-/* INNER FLEX WRAPPER */
+
 .nav-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -19,7 +22,7 @@
   justify-content: space-between;
 }
 
-/* BRAND AREA */
+
 .brand {
   display: flex;
   align-items: center;
@@ -37,13 +40,12 @@
   color: #111;
 }
 
-/* NAV BUTTON GROUP */
+
 .nav-actions {
   display: flex;
   gap: 12px;
 }
 
-/* BUTTON STYLE */
 .nav-btn {
   padding: 8px 16px;
   border-radius: 8px;
@@ -57,20 +59,19 @@
   transition: 0.2s ease;
 }
 
-/* Hover effect */
+
 .nav-btn:hover {
   background: #e5e5e5;
   border-color: #c1c1c1;
 }
 
-/* ACTIVE PAGE (optional highlight) */
+
 .nav-btn.active {
   background: #2563eb;
   color: white;
   border-color: #2563eb;
 }
 
-/* MOBILE */
 @media (max-width: 720px) {
   .nav-inner {
     flex-direction: column;
