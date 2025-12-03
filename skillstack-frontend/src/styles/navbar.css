@@ -1,88 +1,86 @@
-/* Navbar container */
+/* NAVBAR FULL WIDTH */
 .navbar {
-  background: white;
+  width: 100%;
+  background: #ffffff;
   border-bottom: 1px solid #e5e5e5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 100;
 }
 
-/* Inner layout */
+/* INNER FLEX WRAPPER */
 .nav-inner {
-  max-width: 1100px;
-  margin: auto;
-  padding: 12px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Brand area */
+/* BRAND AREA */
 .brand {
   display: flex;
   align-items: center;
-  text-decoration: none;
   gap: 8px;
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 24px;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* Logo spacing */
-.logo {
   font-size: 22px;
-  margin-right: 4px;
+  font-weight: 700;
+  color: #111;
 }
 
-/* Right-side navigation buttons */
+/* NAV BUTTON GROUP */
 .nav-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* Individual nav button */
+/* BUTTON STYLE */
 .nav-btn {
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 8px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
+  border: 1px solid #d5d5d5;
+  background: #fafafa;
   text-decoration: none;
   color: #222;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
-}
-    
-/* Hover state */
-.nav-btn:hover {
-  background: #f2f2f2;
-  border-color: #cfcfcf;
+  transition: 0.2s ease;
 }
 
-/* Active page highlighting */
+/* Hover effect */
+.nav-btn:hover {
+  background: #e5e5e5;
+  border-color: #c1c1c1;
+}
+
+/* ACTIVE PAGE (optional highlight) */
 .nav-btn.active {
   background: #2563eb;
   color: white;
   border-color: #2563eb;
 }
 
-/* Mobile */
-@media (max-width: 700px) {
+/* MOBILE */
+@media (max-width: 720px) {
   .nav-inner {
     flex-direction: column;
-    align-items: flex-start;
     gap: 10px;
+    align-items: flex-start;
   }
 
   .nav-actions {
-    width: 100%;
-    justify-content: flex-start;
     flex-wrap: wrap;
+    width: 100%;
   }
 
   .nav-btn {

@@ -6,8 +6,9 @@ export default function Navbar() {
     <div className="navbar">
       <div className="nav-inner">
 
-        <Link to="/" className="brand title">
-          <span className="logo">📚</span> SkillStack
+        <Link to="/" className="brand">
+          <span className="logo">📚</span>
+          <span className="title">SkillStack</span>
         </Link>
 
         <div className="nav-actions">
