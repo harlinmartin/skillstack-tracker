@@ -5,7 +5,13 @@ import AddSkillForm from "./components/AddSkillForm";
 import SkillList from "./components/SkillList";
 import Dashboard from "./components/Dashboard";
 import Navbar from "./components/Navbar";
-import "./styles.css";
+import "./styles/global.css";
+import "./styles/layout.css";
+import "./styles/navbar.css";
+import "./styles/forms.css";
+import "./styles/cards.css";
+import "./styles/dashboard.css";
+
 
 export default function App() {
   const [skills, setSkills] = useState([]);
