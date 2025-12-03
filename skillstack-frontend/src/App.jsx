@@ -1,17 +1,12 @@
-// src/App.jsx
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { listSkills, createSkill, updateSkill, deleteSkill } from "./api";
 
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import DashboardPage from "./pages/DashboardPage";
 import AddSkillPage from "./pages/AddSkillPage";
+import Home from "./pages/Home";
 
 import "./styles/global.css";
 import "./styles/layout.css";
@@ -24,13 +19,12 @@ export default function App() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Load skills from backend
   async function load() {
     setLoading(true);
     try {
       const data = await listSkills();
       setSkills(Array.isArray(data) ? data : []);
-    } catch (e) {
-      console.error("Failed to load skills", e);
     } finally {
       setLoading(false);
     }
@@ -40,19 +34,24 @@ export default function App() {
     load();
   }, []);
 
+  // Create skill
   async function handleCreate(payload) {
     const created = await createSkill(payload);
     setSkills((prev) => [created, ...prev]);
   }
 
+  // Update skill (hours, notes, status, etc.)
   async function handleUpdate(id, patch) {
     const updated = await updateSkill(id, patch);
-    setSkills((prev) => prev.map((s) => (s.id === updated.id ? updated : s)));
+    setSkills((prev) =>
+      prev.map((s) => (s.id === updated.id ? updated : s))
+    );
   }
 
+  // Delete a skill
   async function handleDelete(id) {
-    const ok = await deleteSkill(id);
-    if (ok) setSkills((prev) => prev.filter((s) => s.id !== id));
+    await deleteSkill(id);
+    setSkills((prev) => prev.filter((s) => s.id !== id));
   }
 
   return (
@@ -61,12 +60,11 @@ export default function App() {
 
       <div className="container">
         <Routes>
-
           <Route path="/" element={<Home />} />
 
           <Route
             path="/dashboard"
-            element={<DashboardPage skills={skills} />}
+            element={<DashboardPage skills={skills} loading={loading} />}
           />
 
           <Route
@@ -81,8 +79,8 @@ export default function App() {
               />
             }
           />
-
         </Routes>
+
       </div>
     </Router>
   );
