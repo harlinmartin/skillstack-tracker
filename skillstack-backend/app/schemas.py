@@ -9,6 +9,7 @@ class SkillCreate(BaseModel):
     resource_type: Optional[str] = None
     category: Optional[str] = None
     tags: Optional[str] = None
+    difficulty: Optional[int] = None 
 
 class SkillUpdate(BaseModel):
     status: Optional[str] = None
