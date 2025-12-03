@@ -1,21 +1,22 @@
-// src/components/Navbar.jsx
-import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
 export default function Navbar() {
   return (
-    <header className="navbar">
+    <div className="navbar">
       <div className="nav-inner">
-        <div className="brand">
-          <div className="logo">📚</div>
-          <div className="title">SkillStack</div>
+
+        <Link to="/" className="brand title">
+          <span className="logo">📚</span> SkillStack
+        </Link>
+
+        <div className="nav-actions">
+          <Link to="/" className="nav-btn">Home</Link>
+          <Link to="/dashboard" className="nav-btn">Dashboard</Link>
+          <Link to="/add-skill" className="nav-btn">Add Skill</Link>
         </div>
 
-        <nav className="nav-actions">
-          <button className="nav-btn">Dashboard</button>
-          <button className="nav-btn">My Skills</button>
-          <button className="nav-btn">Export</button>
-        </nav>
       </div>
-    </header>
+    </div>
   );
 }
