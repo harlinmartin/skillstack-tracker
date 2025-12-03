@@ -6,12 +6,12 @@ export default function AddSkillPage({ skills, loading, onCreate, onUpdate, onDe
     <div>
       <h1>Add Skill</h1>
 
-      {/* Add Skill Form */}
+
       <AddSkillForm onCreate={onCreate} />
 
       <h2 style={{ marginTop: "20px" }}>Your Skills</h2>
 
-      {/* Skills List */}
+
       {loading ? (
         <p>Loading...</p>
       ) : (

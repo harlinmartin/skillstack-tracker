@@ -8,6 +8,8 @@ import {
 const COLORS = ["#4caf50", "#1e88e5", "#ff9800", "#e53935", "#8e44ad"];
 
 export default function Dashboard({ skills = [] }) {
+
+  // Compute stats
   const stats = useMemo(() => {
     const byStatus = skills.reduce((acc, s) => {
       acc[s.status] = (acc[s.status] || 0) + 1;
@@ -15,24 +17,26 @@ export default function Dashboard({ skills = [] }) {
     }, {});
 
     const totalHours = skills.reduce(
-      (a, s) => a + (Number(s.hours_spent) || 0),
+      (sum, s) => sum + Number(s.hours_spent || 0),
       0
     );
 
     const byCategory = skills.reduce((acc, s) => {
-      const c = s.category || "Uncategorized";
-      acc[c] = (acc[c] || 0) + 1;
+      const cat = s.category || "Uncategorized";
+      acc[cat] = (acc[cat] || 0) + 1;
       return acc;
     }, {});
 
     return { byStatus, totalHours, byCategory };
   }, [skills]);
 
+  // Pie data
   const pieData = Object.entries(stats.byStatus).map(([key, value]) => ({
     name: key,
-    value: value
+    value
   }));
 
+  // Bar data
   const barData = Object.entries(stats.byCategory).map(([key, value]) => ({
     category: key,
     count: value
@@ -40,9 +44,10 @@ export default function Dashboard({ skills = [] }) {
 
   return (
     <div className="dashboard">
+
       <h2>Dashboard</h2>
 
-      {/* Top cards */}
+      {/* Top summary cards */}
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <h3>Total Skills</h3>
@@ -55,7 +60,7 @@ export default function Dashboard({ skills = [] }) {
         </div>
       </div>
 
-      {/* Pie chart for status */}
+      {/* Pie Chart */}
       <h3>Status Breakdown</h3>
       <div className="chart-container">
         <ResponsiveContainer width="100%" height={280}>
@@ -67,7 +72,7 @@ export default function Dashboard({ skills = [] }) {
               outerRadius={100}
               label
             >
-              {pieData.map((entry, index) => (
+              {pieData.map((_, index) => (
                 <Cell key={index} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
@@ -76,7 +81,7 @@ export default function Dashboard({ skills = [] }) {
         </ResponsiveContainer>
       </div>
 
-      {/* Bar chart for categories */}
+      {/* Bar Chart */}
       <h3>Category Breakdown</h3>
       <div className="chart-container">
         <ResponsiveContainer width="100%" height={280}>
@@ -89,6 +94,7 @@ export default function Dashboard({ skills = [] }) {
           </BarChart>
         </ResponsiveContainer>
       </div>
+
     </div>
   );
 }
