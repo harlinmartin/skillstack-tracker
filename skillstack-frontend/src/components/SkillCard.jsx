@@ -1,12 +1,20 @@
+// src/components/SkillCard.jsx
 import React, { useState } from "react";
 
 export default function SkillCard({ skill, onUpdate, onDelete }) {
-
   const [hours, setHours] = useState("");
-  const [notes, setNotes] = useState(() => skill.notes || "");
+  const [notes, setNotes] = useState(skill.notes || "");
 
-  function patch(body) {
-    onUpdate(skill.id, body);
+  // Patch helper → waits for backend + returns updated skill
+  async function patch(body) {
+    const updated = await onUpdate(skill.id, body);
+
+    // If notes changed in backend, update local state
+    if (updated && updated.notes !== undefined) {
+      setNotes(updated.notes || "");
+    }
+
+    return updated;
   }
 
   return (
@@ -19,16 +27,15 @@ export default function SkillCard({ skill, onUpdate, onDelete }) {
           <div className="meta">{skill.platform} • {skill.resource_type}</div>
         </div>
 
-        {/* ACTION BUTTONS */}
+        {/* Action Buttons */}
         <div className="skill-actions">
 
-          {/* Toggle Completion */}
+          {/* Toggle completion */}
           <button
             className="btn-complete"
             onClick={() =>
               patch({
-                status:
-                  skill.status === "completed" ? "in-progress" : "completed",
+                status: skill.status === "completed" ? "in-progress" : "completed"
               })
             }
           >
@@ -43,7 +50,7 @@ export default function SkillCard({ skill, onUpdate, onDelete }) {
         </div>
       </div>
 
-      {/* Card Body Data */}
+      {/* Skill Details */}
       <div className="card-body">
         <p><strong>Category:</strong> {skill.category || "—"}</p>
         <p><strong>Status:</strong> {skill.status}</p>
@@ -52,7 +59,7 @@ export default function SkillCard({ skill, onUpdate, onDelete }) {
         <p><strong>Tags:</strong> {skill.tags || "—"}</p>
       </div>
 
-      {/* Controls: Hours & Notes */}
+      {/* Controls */}
       <div className="card-controls">
 
         {/* Add Hours */}
@@ -66,9 +73,7 @@ export default function SkillCard({ skill, onUpdate, onDelete }) {
             className="btn-small"
             onClick={() => {
               const add = Number(hours || 0);
-              patch({
-                hours_spent: Number(skill.hours_spent) + add,
-              });
+              patch({ hours_spent: Number(skill.hours_spent) + add });
               setHours("");
             }}
           >
@@ -76,23 +81,31 @@ export default function SkillCard({ skill, onUpdate, onDelete }) {
           </button>
         </div>
 
-        {/* Save Notes */}
+        {/* Notes */}
         <div className="notes-block">
           <textarea
             placeholder="Notes"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-          />
+          ></textarea>
+
           <button
             className="btn-small"
-            onClick={() => {
-              patch({ notes });
-            }}
+            onClick={() => patch({ notes })}
           >
             Save Notes
           </button>
+
+          {/* Show saved notes */}
+          {skill.notes && (
+            <p style={{ marginTop: "8px", whiteSpace: "pre-wrap" }}>
+              <strong>Saved:</strong> {skill.notes}
+            </p>
+          )}
         </div>
+
       </div>
+
     </div>
   );
 }
