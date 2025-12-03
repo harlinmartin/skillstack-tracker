@@ -1,0 +1,58 @@
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-title {
+  margin: 0;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.skill-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: white;
+}
+
+.btn:hover {
+  background: #f1f5f9;
+}
+
+.btn.danger {
+  border-color: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+}
+
+.notes-block textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
