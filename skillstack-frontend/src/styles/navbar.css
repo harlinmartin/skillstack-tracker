@@ -1,51 +1,91 @@
+/* Navbar container */
 .navbar {
   background: white;
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 50;
 }
 
+/* Inner layout */
 .nav-inner {
   max-width: 1100px;
   margin: auto;
   padding: 12px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
+/* Brand area */
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  text-decoration: none;
+  gap: 8px;
 }
 
 .title {
-  font-weight: 700;
   font-size: 20px;
+  font-weight: 700;
+  color: #222;
 }
 
+/* Logo spacing */
+.logo {
+  font-size: 22px;
+  margin-right: 4px;
+}
+
+/* Right-side navigation buttons */
 .nav-actions {
   display: flex;
   gap: 10px;
 }
 
+/* Individual nav button */
 .nav-btn {
-  border: 1px solid var(--border);
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
-  background: white;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  text-decoration: none;
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
-
+    
+/* Hover state */
 .nav-btn:hover {
-  background: #f8fafc;
+  background: #f2f2f2;
+  border-color: #cfcfcf;
 }
 
-@media (max-width: 900px) {
+/* Active page highlighting */
+.nav-btn.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   .nav-actions {
-    display: none;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nav-btn {
+    padding: 8px 12px;
   }
 }
